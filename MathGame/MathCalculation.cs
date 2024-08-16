@@ -18,16 +18,16 @@ namespace MathGame
             switch (choice)
             {
                 case "1":
-                   actualResult = Operation.Addition(num1, num2);
+                    actualResult = Operation.Addition(num1, num2);
                     break;
                 case "2":
-                   actualResult = Operation.Substraction(num1, num2);
+                    actualResult = Operation.Substraction(num1, num2);
                     break;
                 case "3":
-                   actualResult = Operation.Multiplication(num1, num2);
+                    actualResult = Operation.Multiplication(num1, num2);
                     break;
                 case "4":
-                   actualResult = Operation.Division(num1, num2);
+                    actualResult = Operation.Division(num1, num2);
                     break;
                 //case "5":
                 //    Operation.DisplayHistory();
@@ -76,6 +76,7 @@ namespace MathGame
         //    }
         //}
     }
+}
 
 
 
