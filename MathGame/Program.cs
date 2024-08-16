@@ -6,6 +6,7 @@
         {
             string? playerChoice;
             string? replayChoice;
+            Option opt = new Option();
 
             do
             {
@@ -25,7 +26,8 @@
                     break;
                 }
 
-                createOperands();
+                opt.CreateOperands();
+                opt.CreateQuestion(playerChoice);
 
                 Console.WriteLine("Do you want to replay? Y or N ");
                 replayChoice = Console.ReadLine();
