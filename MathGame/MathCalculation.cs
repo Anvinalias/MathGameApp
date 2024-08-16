@@ -2,7 +2,7 @@
 
 namespace MathGame
 {
-    internal class Option
+    internal class GameOption
     {
         int num1, num2;
         string question = "", outputString = "";

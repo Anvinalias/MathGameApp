@@ -6,7 +6,7 @@
         {
             string? playerChoice;
             string? replayChoice;
-            Option opt = new Option();
+            GameOption opt = new GameOption();
 
             do
             {
