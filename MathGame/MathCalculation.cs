@@ -5,9 +5,9 @@ namespace MathGame
     internal class GameOption
     {
         int num1, num2;
-        string question = "", outputString = "";
+        string question = "", outputString = "", optionOperator = "";
         int actualResult = 0, userInput = 0;
-        List<string> items = new List<string>();
+        List<string> gameHistory = new List<string>();
 
         Random ran = new Random();
         public void CreateOperands()
@@ -16,50 +16,57 @@ namespace MathGame
             num2 = ran.Next(0, 100);
         }
 
-        public void CreateQuestion(string choice)
+        public void UserOption(string choice)
         {
             switch (choice)
             {
                 case "1":
                     actualResult = Operation.Addition(num1, num2);
-                    question = $"What is {num1} + {num2} ?";
-                    Console.WriteLine(question);
-                    userInput = Convert.ToInt32(Console.ReadLine());
+                    optionOperator = "+";
+                    question = Operation.CreateQuestion(num1, num2, optionOperator);
+                    userInput = Operation.GetUserResponse();
                     outputString = Operation.CheckResult(actualResult, userInput);
                     break;
+
                 case "2":
                     actualResult = Operation.Substraction(num1, num2);
-                    question = $"What is {num1} - {num2} ?";
-                    Console.WriteLine(question);
-                    userInput = Convert.ToInt32(Console.ReadLine());
+                    optionOperator = "-";
+                    question = Operation.CreateQuestion(num1, num2, optionOperator);
+                    userInput = Operation.GetUserResponse();
                     outputString = Operation.CheckResult(actualResult, userInput);
                     break;
+
                 case "3":
                     actualResult = Operation.Multiplication(num1, num2);
-                    question = $"What is {num1} * {num2} ?";
-                    Console.WriteLine(question);
-                    userInput = Convert.ToInt32(Console.ReadLine());
+                    optionOperator = "*";
+                    question = Operation.CreateQuestion(num1, num2, optionOperator);
+                    userInput = Operation.GetUserResponse();
                     outputString = Operation.CheckResult(actualResult, userInput);
                     break;
+
                 case "4":
                     actualResult = Operation.Division(num1, num2);
-                    question = $"What is {num1} / {num2} ?";
-                    Console.WriteLine(question);
-                    userInput = Convert.ToInt32(Console.ReadLine());
+                    optionOperator = "/";
+                    question = Operation.CreateQuestion(num1, num2, optionOperator);
+                    userInput = Operation.GetUserResponse();
                     outputString = Operation.CheckResult(actualResult, userInput);
                     break;
+
                 case "5":
-                    Operation.DisplayHistory(items);
+                    Operation.DisplayHistory(gameHistory);
                     break;
+
                 default:
                     Console.WriteLine("Invalid choice");
                     break;
             }
-            items.Add($"Question: {question} Player response: {userInput} Result: {outputString}");
+            gameHistory.Add($"Question: {question} Player response: {userInput} Result: {outputString}");
         }
     }
     internal class Operation
     {
+        static string question = "";
+        static int userResponse = 0;
         public static int Addition(int num1, int num2)
         {
             return num1 + num2; ;
@@ -88,6 +95,19 @@ namespace MathGame
             }
         }
 
+        public static string CreateQuestion(int num1, int num2, string op)
+        {
+            question = $"What is {num1} {op} {num2} ?";
+            Console.WriteLine(question);
+            return question;
+        }
+
+        public static int GetUserResponse()
+        {
+            userResponse = Convert.ToInt32(Console.ReadLine());
+            return userResponse; 
+        }
+
         public static string CheckResult(int actualResult, int userInput)
         {
             string resultString = "";
@@ -108,13 +128,11 @@ namespace MathGame
             }
         }
 
-        public static void DisplayHistory(List<string> listItems)
+        public static void DisplayHistory(List<string> game)
         {
-          
-
-            foreach (string i in listItems)
+            foreach (string history in game)
             {
-                Console.WriteLine(i);
+                Console.WriteLine(history);
             }
         }
     }

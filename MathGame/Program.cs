@@ -27,9 +27,9 @@
                 }
 
                 opt.CreateOperands();
-                opt.CreateQuestion(playerChoice);
+                opt.UserOption(playerChoice);
 
-                Console.WriteLine("Do you want to replay? Y or N ");
+                Console.WriteLine("Press 'Y' to playagain 'N' to quit");
                 replayChoice = Console.ReadLine();
 
             } while (replayChoice != "n" && replayChoice != "N");
