@@ -5,10 +5,10 @@ namespace MathGame
     internal class Option
     {
         int num1, num2;
-        string question = "";
-        int actualResult = 0;
-        int userInput = 0;
+        string question = "", outputString = "";
+        int actualResult = 0, userInput = 0;
         List<string> items = new List<string>();
+
         Random ran = new Random();
         public void CreateOperands()
         {
@@ -25,28 +25,28 @@ namespace MathGame
                     question = $"What is {num1} + {num2} ?";
                     Console.WriteLine(question);
                     userInput = Convert.ToInt32(Console.ReadLine());
-                    Operation.CheckResult(actualResult, userInput);
+                    outputString = Operation.CheckResult(actualResult, userInput);
                     break;
                 case "2":
                     actualResult = Operation.Substraction(num1, num2);
                     question = $"What is {num1} - {num2} ?";
                     Console.WriteLine(question);
                     userInput = Convert.ToInt32(Console.ReadLine());
-                    Operation.CheckResult(actualResult, userInput);
+                    outputString = Operation.CheckResult(actualResult, userInput);
                     break;
                 case "3":
                     actualResult = Operation.Multiplication(num1, num2);
                     question = $"What is {num1} * {num2} ?";
                     Console.WriteLine(question);
                     userInput = Convert.ToInt32(Console.ReadLine());
-                    Operation.CheckResult(actualResult, userInput);
+                    outputString = Operation.CheckResult(actualResult, userInput);
                     break;
                 case "4":
                     actualResult = Operation.Division(num1, num2);
                     question = $"What is {num1} / {num2} ?";
                     Console.WriteLine(question);
                     userInput = Convert.ToInt32(Console.ReadLine());
-                    Operation.CheckResult(actualResult, userInput);
+                    outputString = Operation.CheckResult(actualResult, userInput);
                     break;
                 case "5":
                     Operation.DisplayHistory(items);
@@ -55,6 +55,7 @@ namespace MathGame
                     Console.WriteLine("Invalid choice");
                     break;
             }
+            items.Add($"Question: {question} Player response: {userInput} Result: {outputString}");
         }
     }
     internal class Operation
@@ -87,21 +88,30 @@ namespace MathGame
             }
         }
 
-        public static void CheckResult(int actualResult, int userInput)
+        public static string CheckResult(int actualResult, int userInput)
         {
+            string resultString = "";
+
             if (actualResult == userInput)
             {
-                Console.WriteLine("Correct Answer");
+                resultString = $"{userInput} is Correct";
+                Console.WriteLine(resultString);
+                return resultString;
+                 
             }
             else
             {
-                Console.WriteLine("Incorrect Answer");
+                resultString = $"{userInput} is Incorrect";
+                Console.WriteLine(resultString);
                 Console.WriteLine($"Correct Answer is {actualResult}");
+                return resultString;
             }
         }
 
         public static void DisplayHistory(List<string> listItems)
         {
+          
+
             foreach (string i in listItems)
             {
                 Console.WriteLine(i);
