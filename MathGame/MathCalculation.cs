@@ -75,8 +75,6 @@ namespace MathGame
     }
     internal class Operation
     {
-        static string question = "";
-        static int userResponse = 0;
 
         // math operation
         public static int Addition(int num1, int num2)
@@ -96,19 +94,18 @@ namespace MathGame
 
         public static int Division(int x, int y)
         {
-            try
+            if (y == 0)
             {
-                return x / y;
+                Console.WriteLine("Cannot divide by zero");
             }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-                return 0;
-            }
+
+            return x / y;
         }
 
         public static string CreateQuestion(int num1, int num2, string op)
         {
+            string question = "";
+
             question = $"What is {num1} {op} {num2} ?";
             Console.WriteLine(question);
             return question;
@@ -116,8 +113,13 @@ namespace MathGame
 
         public static int GetUserResponse()
         {
-            userResponse = Convert.ToInt32(Console.ReadLine());
-            return userResponse; 
+            int userResponse;
+
+            while (!int.TryParse(Console.ReadLine(), out userResponse))
+            {
+                Console.WriteLine("Please enter a valid number.");
+            }
+            return userResponse;
         }
 
         // validate user answer with correct result
