@@ -23,7 +23,7 @@
 
                 if (playerChoice == "6")
                 {
-                    break;
+                    Environment.Exit(0);
                 }
 
                 opt.CreateOperands();
