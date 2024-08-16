@@ -7,9 +7,14 @@ namespace MathGame
         int num1, num2;
         string question = "", outputString = "", optionOperator = "";
         int actualResult = 0, userInput = 0;
+
+        // a list to store game history
         List<string> gameHistory = new List<string>();
 
+        // create object of random class
         Random ran = new Random();
+
+        // generate random variables
         public void CreateOperands()
         {
             num1 = ran.Next(0, 100);
@@ -21,15 +26,19 @@ namespace MathGame
             switch (choice)
             {
                 case "1":
+                    // perform math operation
                     actualResult = Operation.Addition(num1, num2);
                     optionOperator = "+";
+                    // generate and store question
                     question = Operation.CreateQuestion(num1, num2, optionOperator);
+                    // get user answer
                     userInput = Operation.GetUserResponse();
+                    // store game result
                     outputString = Operation.CheckResult(actualResult, userInput);
                     break;
 
                 case "2":
-                    actualResult = Operation.Substraction(num1, num2);
+                    actualResult = Operation.Subtraction(num1, num2);
                     optionOperator = "-";
                     question = Operation.CreateQuestion(num1, num2, optionOperator);
                     userInput = Operation.GetUserResponse();
@@ -60,6 +69,7 @@ namespace MathGame
                     Console.WriteLine("Invalid choice");
                     break;
             }
+            // add game history to the list
             gameHistory.Add($"Question: {question} Player response: {userInput} Result: {outputString}");
         }
     }
@@ -67,12 +77,14 @@ namespace MathGame
     {
         static string question = "";
         static int userResponse = 0;
+
+        // math operation
         public static int Addition(int num1, int num2)
         {
             return num1 + num2; ;
         }
 
-        public static int Substraction(int n1, int n2)
+        public static int Subtraction(int n1, int n2)
         {
             return n1 - n2;
         }
@@ -108,6 +120,7 @@ namespace MathGame
             return userResponse; 
         }
 
+        // validate user answer with correct result
         public static string CheckResult(int actualResult, int userInput)
         {
             string resultString = "";
@@ -128,6 +141,7 @@ namespace MathGame
             }
         }
 
+        // display game history
         public static void DisplayHistory(List<string> game)
         {
             foreach (string history in game)

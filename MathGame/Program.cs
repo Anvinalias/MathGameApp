@@ -13,7 +13,7 @@
                 Console.WriteLine("Choose from below choices ?");
 
                 Console.WriteLine("1. Addition");
-                Console.WriteLine("2. Substraction");
+                Console.WriteLine("2. Subtraction");
                 Console.WriteLine("3. Multiplication");
                 Console.WriteLine("4. Division");
                 Console.WriteLine("5. History");
@@ -21,6 +21,7 @@
 
                 playerChoice = Console.ReadLine();
 
+                // if user want to quit
                 if (playerChoice == "6")
                 {
                     Environment.Exit(0);
@@ -29,7 +30,7 @@
                 opt.CreateOperands();
                 opt.UserOption(playerChoice);
 
-                Console.WriteLine("Press 'Y' to playagain 'N' to quit");
+                Console.WriteLine("Press 'N' to quit, or any other key to play again.");
                 replayChoice = Console.ReadLine();
 
             } while (replayChoice != "n" && replayChoice != "N");
